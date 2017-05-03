@@ -13,7 +13,7 @@ class CreateWatchlistsHasContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('watchlists_has_contents', function(Blueprint $table {
+        Schema::create('watchlists_has_contents', function(Blueprint $table) {
             $table->unsignedInteger('watchlists_id');
             $table->unsignedInteger('contents_id')->nullable();
 

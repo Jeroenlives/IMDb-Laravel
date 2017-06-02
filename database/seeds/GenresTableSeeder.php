@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class GenresTableSeeder extends Seeder
+{
+    private $genres = [
+        "Action",
+        "Comedy",
+        "Romance",
+        "Adventure",
+        "Fantasy",
+        "Animation",
+        "Family",
+        "Drama",
+        "Horror",
+        "Crime",
+        "Thriller",
+        "Sci-Fi",
+        "Musical"
+    ];
+
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        foreach ($this->genres as $genre) {
+            DB::table('genres')->insert([
+                'genre' => $genre
+            ]);
+        }
+    }
+}

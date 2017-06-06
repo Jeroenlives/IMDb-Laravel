@@ -60,8 +60,12 @@
             @if(Auth::check())
                 @component('bootstrap.navbar.parts.dropdown')
                     @slot('name')
-                        {{ Auth::user()->name() }}
+                        Welcome, {{ Auth::user()->firstname }}!
                     @endslot
+                    @component('bootstrap.navbar.parts.item')
+                        @slot('href', 'logout/')
+                        Logout
+                    @endcomponent
                 @endcomponent
             @else
                 @component('bootstrap.navbar.parts.item')

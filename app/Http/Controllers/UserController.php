@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
-use App\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\{User, Watchlist};
 
-class ContentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,44 +42,50 @@ class ContentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Content  $content
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Content $content)
+    public function show($id)
     {
-        $this->authorize('show', Comment::class);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Content  $content
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Content $content)
+    public function edit(User $user)
     {
-        //
+        if (! Auth::user()->can('update', $user)) {
+            return redirect('/');
+        }
+
+        return view('user.edit', $user);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Content  $content
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Content $content)
+    public function update(Request $request, User $user)
     {
-        //
+        if(! Auth::user()->can('update', $user)) {
+            return redirect('/');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Content  $content
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Content $content)
+    public function destroy($id)
     {
         //
     }

@@ -12,9 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout/', function () {
+    Auth::logout();
+    return redirect('/');
+});
+
+Route::resource('user', 'UserController', [
+   'except' => ['create', 'index']
+]);

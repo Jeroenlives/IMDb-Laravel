@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 class GenresTableSeeder extends Seeder
 {
-    private $genres = [
+    static $genres = [
         "Action",
         "Comedy",
         "Romance",
@@ -27,10 +27,6 @@ class GenresTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach ($this->genres as $genre) {
-            DB::table('genres')->insert([
-                'genre' => $genre
-            ]);
-        }
+        DB::table('genres')->insert(self::$genres);
     }
 }

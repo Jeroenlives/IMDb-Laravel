@@ -19,9 +19,22 @@ Auth::routes();
 
 Route::get('logout/', function () {
     Auth::logout();
-    return redirect('/');
+    return redirect('/')->with('message', "Succesfully logged out!");
 });
 
-Route::resource('user', 'UserController', [
-   'except' => ['create', 'index']
-]);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('user', 'UserController',
+        array(
+            'except' => array(
+                'create',
+                'update',
+                'destroy',
+                'index'
+            )
+        )
+    );
+});
+
+Route::group(['middleware' => 'moderator'], function () {
+   Route::get('databases/', 'ModeratorController@index');
+});

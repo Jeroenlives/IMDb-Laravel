@@ -8,36 +8,6 @@ use App\{User, Watchlist};
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -47,7 +17,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -59,7 +29,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         if (! Auth::user()->can('update', $user)) {
-            return redirect('/');
+            return redirect('/')->with('message', "Sorry, you're not allowed to edit users right now!");
         }
 
         return view('user.edit', $user);

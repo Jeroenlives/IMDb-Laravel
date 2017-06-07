@@ -18,8 +18,8 @@
         <!-- Left nav -->
         <ul class="nav navbar-nav">
             @component('bootstrap.navbar.parts.item')
-                    @slot('href', "/")
-                    Home
+                @slot('href', "/")
+                Home
             @endcomponent
             @component('bootstrap.navbar.parts.item')
                 @slot('href', "movies/")
@@ -66,6 +66,25 @@
                         @slot('href', 'logout/')
                         Logout
                     @endcomponent
+                    @if(! Auth::user()->isAdmin() AND ! Auth::user()->isModerator())
+                        @component('bootstrap.navbar.parts.item')
+                            @slot('href')
+                                {{ 'user/'. Auth::user()->id . '/' }}
+                            @endslot
+                            Profile
+                        @endcomponent
+                    @endif
+                    <li role="separator" class="divider"></li>
+                    @if(Auth::user()->isModerator())
+                        @component('bootstrap.navbar.parts.item')
+                            @slot('href', '#')
+                            Control Panel
+                        @endcomponent
+                        @component('bootstrap.navbar.parts.item')
+                            @slot('href', '#')
+                            Users
+                        @endcomponent
+                    @endif
                 @endcomponent
             @else
                 @component('bootstrap.navbar.parts.item')

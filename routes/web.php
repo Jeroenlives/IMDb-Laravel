@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
@@ -35,6 +33,10 @@ Route::group(['middleware' => 'auth'], function () {
     );
 });
 
-Route::group(['middleware' => 'moderator'], function () {
-   Route::get('databases/', 'ModeratorController@index');
+Route::group(['middleware' => 'moderator', 'prefix' => 'database'], function () {
+   Route::get('/', 'ModeratorController@index');
+   Route::get('movies/', 'ModeratorController@movies');
+   Route::get('series/', 'ModeratorController@series');
+   Route::get('persons/', 'ModeratorController@persons');
+   Route::get('users/', 'ModeratorController@users');
 });

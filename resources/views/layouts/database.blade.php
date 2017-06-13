@@ -1,8 +1,9 @@
-@include('bootstrap.components.html')
-
+<!doctype html>
+<html lang="en">
+@include('bootstrap.components.head')
 <body>
-    @include('bootstrap.navbar.nav')
-    <div id="app container-fluid">
+    @include('bootstrap.navbar.dbnav')
+    <div class="app container-fluid">
         @if(Session::has('message'))
             <p class="alert alert-info">{{ Session::get('message') }}</p>
         @endif

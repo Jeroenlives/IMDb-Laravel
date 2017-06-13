@@ -22,29 +22,29 @@
                 Home
             @endcomponent
             @component('bootstrap.navbar.parts.item')
-                @slot('href', "movies/")
+                @slot('href', "movies")
                 Movies
             @endcomponent
             @component('bootstrap.navbar.parts.item')
-                @slot('href', 'series/')
+                @slot('href', 'series')
                 Series
             @endcomponent
             @component('bootstrap.navbar.parts.dropdown')
                 @slot('name', "More")
                 @component('bootstrap.navbar.parts.item')
-                    @slot('href', "awards/")
+                    @slot('href', "awards")
                     Awards
                 @endcomponent
                 @component('bootstrap.navbar.parts.item')
-                    @slot('href', "Celebs")
+                    @slot('href', "celebs")
                     Celebs
                 @endcomponent
                 @component('bootstrap.navbar.parts.item')
-                    @slot('href', "About")
+                    @slot('href', "about")
                     About
                 @endcomponent
                 @component('bootstrap.navbar.parts.item')
-                    @slot('href', "Contact")
+                    @slot('href', "contact")
                     Contact
                 @endcomponent
             @endcomponent
@@ -63,36 +63,32 @@
                         Welcome, {{ Auth::user()->firstname }}!
                     @endslot
                     @component('bootstrap.navbar.parts.item')
-                        @slot('href', 'logout/')
+                        @slot('href', 'logout')
                         Logout
                     @endcomponent
                     @if(! Auth::user()->isAdmin() AND ! Auth::user()->isModerator())
                         @component('bootstrap.navbar.parts.item')
                             @slot('href')
-                                {{ 'user/'. Auth::user()->id . '/' }}
+                                {{ 'user/'. Auth::user()->id . '' }}
                             @endslot
                             Profile
                         @endcomponent
                     @endif
-                    <li role="separator" class="divider"></li>
                     @if(Auth::user()->isModerator())
+                        <li role="separator" class="divider"></li>
                         @component('bootstrap.navbar.parts.item')
-                            @slot('href', '#')
+                            @slot('href', 'database')
                             Control Panel
-                        @endcomponent
-                        @component('bootstrap.navbar.parts.item')
-                            @slot('href', '#')
-                            Users
                         @endcomponent
                     @endif
                 @endcomponent
             @else
                 @component('bootstrap.navbar.parts.item')
-                    @slot('href', "login/")
+                    @slot('href', "login")
                     Log in
                 @endcomponent
                 @component('bootstrap.navbar.parts.item')
-                    @slot('href', "register/")
+                    @slot('href', "register")
                     Register
                 @endcomponent
             @endif

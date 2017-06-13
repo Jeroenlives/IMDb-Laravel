@@ -1,5 +1,5 @@
-<li {{ Request::is($href) ? "class='active'" : false }}>
-    <a href="{{ url($href) }}" class="@stack('classes')">
+<li class="{{ Request::is($href) ? "active" : false }}">
+    <a href="{{ url($href) }}" >
         {{ $slot }}
     </a>
 </li>

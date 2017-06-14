@@ -11,10 +11,16 @@ class Movie extends Model
     {
         return $this->belongsTo(Content::class);
     }
-    public static function getContents($id)
-    {
-        $contents = DB::table('contents')->where('id', $id)->all();
 
-        return $contents;
+//    public static function getContents($id)
+//    {
+//        $contents = DB::table('contents')->where('id', $id)->all();
+//
+//        return $contents;
+//    }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
     }
 }

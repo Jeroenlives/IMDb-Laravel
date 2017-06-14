@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Content;
+use App\Http\Requests\StoreMovieRequest;
 use App\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
@@ -14,7 +19,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -24,7 +29,11 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        if (! Auth::user()->isAdmin() OR ! Auth::user()->isModerator()) {
+            return redirect(403);
+        }
+
+        return view('database.movies.new');
     }
 
     /**
@@ -33,9 +42,16 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMovieRequest $request)
     {
-        //
+        $content = new Content($request->all());
+        $content->saveOrFail();
+
+        $movie = new Movie([
+            'content_id' => $content->id
+        ]);
+        $movie->save();
+        return redirect('database/movies');
     }
 
     /**

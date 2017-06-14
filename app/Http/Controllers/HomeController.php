@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{Movie, Series, Person};
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class HomeController extends Controller
 {

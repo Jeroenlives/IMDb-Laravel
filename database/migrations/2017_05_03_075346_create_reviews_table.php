@@ -18,13 +18,12 @@ class CreateReviewsTable extends Migration
             $table->string('title');
             $table->longText('body');
             $table->integer('rating')->nullable();
-            $table->unsignedInteger('contents_id');
             $table->unsignedInteger('users_id');
+            $table->integer('reviewable_id');
+            $table->string('reviewable_type');
+
             $table->timestamps();
 
-            $table->foreign('contents_id')
-                ->references('id')
-                ->on('contents');
             $table->foreign('users_id')
                 ->references('id')
                 ->on('users');

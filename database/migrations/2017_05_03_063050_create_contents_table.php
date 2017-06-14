@@ -21,6 +21,7 @@ class CreateContentsTable extends Migration
             $table->integer('metascore')->nullable();
             $table->string('length');
             $table->integer('imdb_rating')->nullable();
+            $table->date('release_date')->nullable();
             $table->timestamps();
         });
     }

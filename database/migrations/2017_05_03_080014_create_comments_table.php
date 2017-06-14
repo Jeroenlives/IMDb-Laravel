@@ -17,15 +17,13 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->mediumText('body');
             $table->unsignedInteger('users_id');
-            $table->unsignedInteger('episodes_id');
+            $table->integer('commentable_id');
+            $table->string('commentable_type');
             $table->timestamps();
 
             $table->foreign('users_id')
                 ->references('id')
                 ->on('users');
-            $table->foreign('episodes_id')
-                ->references('id')
-                ->on('episodes');
         });
     }
 

@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class GenresTableSeeder extends Seeder
 {
-    static $genres = [
+    private $genres = [
         "Action",
         "Comedy",
         "Romance",
@@ -25,8 +26,12 @@ class GenresTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run($param = $this->genres)
     {
-        DB::table('genres')->insert(self::$genres);
+        foreach ($param as $genre) {
+            DB::table('genres')->insert([
+                'genre' => $genre
+            ]);
+        }
     }
 }

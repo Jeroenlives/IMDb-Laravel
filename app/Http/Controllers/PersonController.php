@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Person;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PersonController extends Controller
 {
@@ -24,7 +25,11 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+        if (! Auth::user()->isAdmin() OR ! Auth::user()->isModerator()) {
+            return redirect(403);
+        }
+
+        return view('database.persons.new');
     }
 
     /**
@@ -35,7 +40,7 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->get('birthday'));
     }
 
     /**

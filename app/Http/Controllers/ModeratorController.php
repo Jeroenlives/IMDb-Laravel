@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Request as Req;
 
 class ModeratorController extends Controller
 {
@@ -32,7 +34,8 @@ class ModeratorController extends Controller
             return redirect(403)->with('message', 'Lol nope!');
         }
 
-        return view('database.movies.index');
+        $prefix = Req::path();
+        return view('database.movies.index', compact('prefix'));
     }
 
     /**
@@ -46,7 +49,8 @@ class ModeratorController extends Controller
             return redirect(403)->with('message', 'Lol nope!');
         }
 
-        return view('database.series.index');
+        $prefix = Req::path();
+        return view('database.series.index', compact('prefix'));
     }
 
     /**
@@ -60,7 +64,8 @@ class ModeratorController extends Controller
             return redirect(403)->with('message', 'Lol nope!');
         }
 
-        return view('database.persons.index');
+        $prefix = Req::path();
+        return view('database.persons.index', compact('prefix'));
     }
 
     /**
@@ -74,6 +79,7 @@ class ModeratorController extends Controller
             return redirect(403)->with('message', 'Lol nope!');
         }
 
-        return view('database.users.index');
+        $prefix = Req::path();
+        return view('database.users.index', compact('prefix'));
     }
 }

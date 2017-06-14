@@ -20,6 +20,15 @@ class UserController extends Controller
 
     }
 
+    public function create()
+    {
+        if (! Auth::user()->isAdmin() OR ! Auth::user()->isModerator()) {
+            return redirect(403);
+        }
+
+        return view('database.users.new');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

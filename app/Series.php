@@ -16,4 +16,9 @@ class Series extends Model
 //        $contents = DB::table('content')->where('id', $id)->all();
 //        return $contents;
 //    }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 }

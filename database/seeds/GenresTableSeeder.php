@@ -26,9 +26,9 @@ class GenresTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run($param = $this->genres)
+    public function run()
     {
-        foreach ($param as $genre) {
+        foreach ($this->genres as $genre) {
             DB::table('genres')->insert([
                 'genre' => $genre
             ]);
